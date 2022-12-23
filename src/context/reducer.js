@@ -10,6 +10,14 @@ const reducer = (state, { type, payload }) => {
       }
     }
 
+    case 'HANDLE_SEQUENCE': {
+      const { newSequence } = payload
+      return {
+        ...state,
+        columnSequence: newSequence,
+      }
+    }
+
     case 'CLEAR_VALUES': {
       const initialState = {}
       return {

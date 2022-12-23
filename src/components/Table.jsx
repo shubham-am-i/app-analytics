@@ -1,20 +1,27 @@
 // native import
-import { useEffect } from 'react'
+import { useState, useEffect } from 'react'
 // external import
 
 // local import
 import { useAppContext } from '../context/appContext'
+import Wrapper from '../assets/wrappers/table'
 import { tableHeading } from '../utils/config'
+import Accordian from './Accordian'
 
 const Table = () => {
+  const [showSettings, setShowSettings] = useState(false)
   const { getData, data } = useAppContext()
   useEffect(() => {
     getData()
     // eslint-disable-next-line
   }, [])
   return (
-    <div>
-      <table border={1}>
+    <Wrapper>
+      <button className='acc-button' onClick={() => setShowSettings(!showSettings)}>
+        Settings
+      </button>
+      {showSettings && <Accordian />}
+      {/* <table border={1}>
         <thead>
           <tr>
             {tableHeading.map((item, index) => (
@@ -32,13 +39,13 @@ const Table = () => {
               <td>{item.impressions}</td>
               <td>{item.clicks}</td>
               <td>{item.revenue}</td>
-              {/* <td>{item.date}</td>
-              <td>{item.date}</td> */}
+              <td>{item.date}</td>
+              <td>{item.date}</td>
             </tr>
           ))}
         </tbody>
-      </table>
-    </div>
+      </table> */}
+    </Wrapper>
   )
 }
 export default Table
