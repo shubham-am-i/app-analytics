@@ -6,7 +6,10 @@ const reducer = (state, { type, payload }) => {
       const { name, value } = payload
       return {
         ...state,
-        [name]: value,
+        visibleColumns: {
+          ...state.visibleColumns,
+          [name]: value,
+        },
       }
     }
 

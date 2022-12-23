@@ -5,6 +5,9 @@ const Wrapper = styled.section`
     padding: 10px 15px;
     border: 1px solid lightgray;
   }
+  .active {
+    background-color: lightgrey;
+  }
   @media (min-width: 992px) {
   }
 `

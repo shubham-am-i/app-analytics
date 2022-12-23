@@ -6,7 +6,15 @@ import Wrapper from '../assets/wrappers/accordian'
 import { useAppContext } from '../context/appContext'
 
 const Accordian = () => {
-  const { columnSequence, changeSequence } = useAppContext()
+  const { columnSequence, changeSequence, visibleColumns, handleChange } = useAppContext()
+  const { Date, App, Requests, Responses, Impressions, Clicks, Revenue, Fill_rate, CTR } = visibleColumns
+
+  //   toggle visibility
+  const handleClick = (e) => {
+    const name = e.target.id
+    const value = visibleColumns[e.target.id] ? false : true
+    handleChange({ name, value })
+  }
 
   // handle drag sequence
   const handleSequence = (result) => {
@@ -27,7 +35,14 @@ const Accordian = () => {
               {columnSequence.map((column, i) => (
                 <Draggable draggableId={`column-${i}`} key={i} index={i}>
                   {(provided) => (
-                    <span {...provided.dragHandleProps} {...provided.draggableProps} ref={provided.innerRef}>
+                    <span
+                      {...provided.dragHandleProps}
+                      {...provided.draggableProps}
+                      id={column}
+                      className={visibleColumns[column] ? 'active' : ''}
+                      ref={provided.innerRef}
+                      onClick={handleClick}
+                    >
                       {column}
                     </span>
                   )}

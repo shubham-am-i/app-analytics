@@ -1,14 +1,16 @@
 import React, { useReducer, useContext } from 'react'
 import axios from 'axios'
+// local imports
 import reducer from './reducer'
+import { allColumns, visibleColumns } from '../utils/config'
 
 // get values from local storage
 const sequence = localStorage.getItem('sequence')
 
-const allColumns = ['Date', 'App', 'Request', 'Response', 'Impressions', 'Clicks', 'Revenue', 'Fill Rate', 'CTR']
 const initialState = {
   allColumns,
   columnSequence: sequence ? JSON.parse(sequence) : allColumns,
+  visibleColumns: visibleColumns,
   data: [],
 }
 
@@ -17,10 +19,12 @@ const AppContext = React.createContext()
 const AppProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState)
 
+  // handle column visibility
   const handleChange = ({ name, value }) => {
     dispatch({ type: 'HANDLE_CHANGE', payload: { name, value } })
   }
 
+  // alters column sequence
   const changeSequence = (newSequence) => {
     dispatch({
       type: 'HANDLE_SEQUENCE',
