@@ -10,7 +10,13 @@ import Accordian from './Accordian'
 
 const Table = () => {
   const [showSettings, setShowSettings] = useState(false)
-  const { getData, data } = useAppContext()
+  const { getData, data, columnSequence, visibleColumns } = useAppContext()
+
+  //   filtered visibleColumns
+  let keys = Object.keys(visibleColumns)
+  let filtered = keys.filter((key) => visibleColumns[key])
+  console.log(filtered)
+
   useEffect(() => {
     getData()
     // eslint-disable-next-line
@@ -21,30 +27,18 @@ const Table = () => {
         Settings
       </button>
       {showSettings && <Accordian />}
-      {/* <table border={1}>
+      <table className='table'>
         <thead>
           <tr>
-            {tableHeading.map((item, index) => (
-              <th key={index}>{item}</th>
-            ))}
+            {columnSequence
+              .filter((column) => visibleColumns[column] === true)
+              .map((column, index) => (
+                <th key={index}>{column}</th>
+              ))}
           </tr>
         </thead>
-        <tbody>
-          {data.map((item, index) => (
-            <tr key={index}>
-              <td>{item.date}</td>
-              <td>{item.app_id}</td>
-              <td>{item.requests}</td>
-              <td>{item.responses}</td>
-              <td>{item.impressions}</td>
-              <td>{item.clicks}</td>
-              <td>{item.revenue}</td>
-              <td>{item.date}</td>
-              <td>{item.date}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table> */}
+        <tbody></tbody>
+      </table>
     </Wrapper>
   )
 }

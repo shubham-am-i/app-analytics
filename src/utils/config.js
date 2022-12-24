@@ -11,25 +11,25 @@ export const tableHeading = [
 ]
 
 export const allColumns = [
-  'Date',
-  'App',
-  'Requests',
-  'Responses',
-  'Impressions',
-  'Clicks',
-  'Revenue',
-  'Fill_rate',
+  'date',
+  'app_id',
+  'requests',
+  'responses',
+  'impressions',
+  'clicks',
+  'revenue',
+  'fill_rate',
   'CTR',
 ]
 
 export let visibleColumns = {
-  Date: true,
-  App: true,
-  Requests: true,
-  Responses: true,
-  Impressions: true,
-  Clicks: false,
-  Revenue: true,
-  Fill_rate: true,
+  date: true,
+  app_id: true,
+  requests: true,
+  responses: true,
+  impressions: true,
+  clicks: false,
+  revenue: true,
+  fill_rate: true,
   CTR: true,
 }

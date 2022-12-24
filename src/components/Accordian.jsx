@@ -7,18 +7,18 @@ import { useAppContext } from '../context/appContext'
 
 const Accordian = () => {
   const { columnSequence, changeSequence, visibleColumns, handleChange } = useAppContext()
-  const { Date, App, Requests, Responses, Impressions, Clicks, Revenue, Fill_rate, CTR } = visibleColumns
+  //   const { Date, App, Requests, Responses, Impressions, Clicks, Revenue, Fill_rate, CTR } = visibleColumns
 
   //   toggle visibility
   const handleClick = (e) => {
     const name = e.target.id
+    if (name === 'date' || name === 'app_id') return
     const value = visibleColumns[e.target.id] ? false : true
     handleChange({ name, value })
   }
 
   // handle drag sequence
   const handleSequence = (result) => {
-    console.log(result)
     const reArrangeColumns = [...columnSequence]
 
     const [reArrange] = reArrangeColumns.splice(result.source.index, 1)
@@ -27,7 +27,7 @@ const Accordian = () => {
   }
   return (
     <Wrapper className='acc-content'>
-      <h3>Dimensions and Metrics</h3>
+      <p>Dimensions and Metrics</p>
       <DragDropContext onDragEnd={handleSequence}>
         <Droppable droppableId='columnSequence' direction='horizontal' type='column'>
           {(provided) => (
