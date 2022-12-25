@@ -27,7 +27,7 @@ const Accordian = () => {
   }
   return (
     <Wrapper className='acc-content'>
-      <p>Dimensions and Metrics</p>
+      <span>Dimensions and Metrics</span>
       <DragDropContext onDragEnd={handleSequence}>
         <Droppable droppableId='columnSequence' direction='horizontal' type='column'>
           {(provided) => (

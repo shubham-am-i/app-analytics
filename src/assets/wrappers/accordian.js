@@ -1,24 +1,27 @@
 import styled from 'styled-components'
 
 const Wrapper = styled.section`
-  padding: 1% 1.5%;
-  margin-top: 1%;
-  border: 0.5px solid lightgray;
+  padding: 0 1.5%;
+  margin-top: 0.6%;
+  height: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  border: 1px solid #eaeaea;
   border-radius: 4px;
+  /* font: normal normal normal 18px/22px Lato; */
   div {
     display: flex;
     flex-wrap: wrap;
-    justify-content: flex-start;
-    align-items: center;
+    justify-content: space-between;
   }
-  span {
-    padding: 6px 35px;
+  div span {
+    padding: 5px 25px;
     border: 0.5px solid lightgray;
-    margin-left: 1.3%;
     border-radius: 4px;
   }
   .active {
-    background-color: rgb(210, 211, 212);
+    background: radial-gradient(circle at 0% 0.5%, rgb(241, 241, 242) 0.1%, rgb(224, 226, 228) 100.2%);
   }
   @media (min-width: 992px) {
   }

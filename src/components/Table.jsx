@@ -1,6 +1,7 @@
 // native import
-import {useState, useEffect} from 'react'
+import {useState, useEffect, memo} from 'react'
 // external import
+import {GoSettings} from 'react-icons/go'
 // local import
 import {useAppContext} from '../context/appContext'
 import Wrapper from '../assets/wrappers/table'
@@ -28,10 +29,14 @@ const Table = () => {
 
   return (
     <Wrapper>
-      <DateRange />
-      <button className='acc-button' onClick={() => setShowSettings(!showSettings)}>
-        Settings
-      </button>
+      <div className='components-container'>
+        {' '}
+        <DateRange />
+        <button className='acc-button' onClick={() => setShowSettings(!showSettings)}>
+          <GoSettings style={{marginRight: '10px'}} />
+          Settings
+        </button>
+      </div>
       {showSettings && <Accordian />}
       <table className='table'>
         <thead>
@@ -44,10 +49,19 @@ const Table = () => {
           </tr>
         </thead>
         <tbody>
-          {data.map((item, i) => (
-            <tr key={i}>
+          {data.slice(0, 10).map((item, i) => (
+            <tr key={i} className='border-top'>
               {filtered.map((data, i) => (
-                <td key={i}>{item[data]}</td>
+                <td key={i}>
+                  {data === 'app' ? (
+                    <div>
+                      <img src='icon.png' alt='logo' />
+                      {item[data]}
+                    </div>
+                  ) : (
+                    item[data]
+                  )}
+                </td>
               ))}
             </tr>
           ))}
@@ -56,4 +70,4 @@ const Table = () => {
     </Wrapper>
   )
 }
-export default Table
+export default memo(Table)

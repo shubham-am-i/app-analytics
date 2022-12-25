@@ -38,7 +38,7 @@ const AppProvider = ({children}) => {
 
   const getData = async (start, end) => {
     let startDate = start ? start : format(new Date('June 01, 2021'), 'yyyy-MM-dd')
-    let endDate = end ? end : format(new Date('June 31, 2021'), 'yyyy-MM-dd')
+    let endDate = end ? end : format(new Date('June 30, 2021'), 'yyyy-MM-dd')
     console.log(startDate, endDate)
     const url = `https://go-dev.greedygame.com/v3/dummy/report?startDate=${startDate}&endDate=${endDate}`
     const appUrl = 'https://go-dev.greedygame.com/v3/dummy/apps'

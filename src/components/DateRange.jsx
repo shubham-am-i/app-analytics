@@ -2,7 +2,7 @@ import {useEffect, useRef, useState} from 'react'
 import {DateRangePicker} from 'react-date-range'
 
 import format from 'date-fns/format'
-import {addDays, getDate} from 'date-fns'
+import {addDays} from 'date-fns'
 
 import 'react-date-range/dist/styles.css'
 import 'react-date-range/dist/theme/default.css'
@@ -14,8 +14,8 @@ const DateRange = () => {
   // date state
   const [range, setRange] = useState([
     {
-      startDate: new Date('Jully 01, 2021'),
-      endDate: addDays(new Date('Jully 01, 2021'), 7),
+      startDate: new Date('June 01, 2021'),
+      endDate: addDays(new Date('June 01, 2021'), 29),
       key: 'selection',
     },
   ])

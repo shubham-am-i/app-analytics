@@ -2,9 +2,11 @@ import styled from 'styled-components'
 
 const Wrapper = styled.section`
   input.inputBox {
-    padding: 5px 8px 4px 8px;
-    border-radius: 3px;
-    border: 0.5px solid lightgray;
+    height: 33px;
+    border: 1px solid #70707038;
+    border-radius: 4px;
+    text-align: center;
+    font-size: 16px;
   }
 
   .calendarWrap {
