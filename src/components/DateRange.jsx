@@ -1,4 +1,4 @@
-import {useEffect, useRef, useState} from 'react'
+import {useEffect, useRef, useState, memo} from 'react'
 import {DateRangePicker} from 'react-date-range'
 
 import format from 'date-fns/format'
@@ -9,7 +9,7 @@ import 'react-date-range/dist/theme/default.css'
 import Wrapper from '../assets/wrappers/dateRange'
 import {useAppContext} from '../context/appContext'
 
-const DateRange = () => {
+const DateRange = memo(() => {
   const {getData} = useAppContext()
   // date state
   const [range, setRange] = useState([
@@ -83,6 +83,6 @@ const DateRange = () => {
       </div>
     </Wrapper>
   )
-}
+})
 
 export default DateRange
