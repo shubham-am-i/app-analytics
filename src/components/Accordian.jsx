@@ -7,7 +7,6 @@ import {useAppContext} from '../context/appContext'
 
 const Accordian = () => {
   const {columnSequence, changeSequence, visibleColumns, handleChange} = useAppContext()
-  //   const { Date, App, Requests, Responses, Impressions, Clicks, Revenue, Fill_rate, CTR } = visibleColumns
 
   //   toggle visibility
   const handleClick = (e) => {

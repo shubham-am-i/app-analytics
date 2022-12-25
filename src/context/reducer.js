@@ -1,9 +1,7 @@
-import { initialState } from './appContext'
-
-const reducer = (state, { type, payload }) => {
+const reducer = (state, {type, payload}) => {
   switch (type) {
     case 'HANDLE_CHANGE': {
-      const { name, value } = payload
+      const {name, value} = payload
       return {
         ...state,
         visibleColumns: {
@@ -14,7 +12,7 @@ const reducer = (state, { type, payload }) => {
     }
 
     case 'HANDLE_SEQUENCE': {
-      const { newSequence } = payload
+      const {newSequence} = payload
       return {
         ...state,
         columnSequence: newSequence,
@@ -30,10 +28,19 @@ const reducer = (state, { type, payload }) => {
     }
 
     case 'GET_DATA_SUCCESS': {
-      const { data } = payload
+      const {data, totalRecords} = payload
       return {
         ...state,
         data,
+        totalRecords,
+      }
+    }
+
+    case 'CHANGE_PAGE': {
+      const {pageNumber} = payload
+      return {
+        ...state,
+        page: +pageNumber,
       }
     }
 

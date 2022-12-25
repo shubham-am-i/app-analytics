@@ -7,16 +7,17 @@ import {useAppContext} from '../context/appContext'
 import Wrapper from '../assets/wrappers/table'
 import Accordian from './Accordian'
 import DateRange from './DateRange'
+import Pagination from './Pagination'
 
 const Table = () => {
   const [showSettings, setShowSettings] = useState(false)
   const [filtered, setFiltered] = useState([])
-  const {getData, data, columnSequence, visibleColumns} = useAppContext()
+  const {data, columnSequence, visibleColumns, page} = useAppContext()
 
-  useEffect(() => {
-    getData()
-    // eslint-disable-next-line
-  }, [])
+  // pagination constant
+  const start = (page - 1) * 10
+  const end = page * 10
+
   useEffect(() => {
     let arr = []
     for (let column of columnSequence) {
@@ -49,15 +50,15 @@ const Table = () => {
           </tr>
         </thead>
         <tbody>
-          {data.slice(0, 10).map((item, i) => (
+          {data.slice(start, end).map((item, i) => (
             <tr key={i} className='border-top'>
               {filtered.map((data, i) => (
                 <td key={i}>
                   {data === 'app' ? (
-                    <div>
+                    <>
                       <img src='icon.png' alt='logo' />
                       {item[data]}
-                    </div>
+                    </>
                   ) : (
                     item[data]
                   )}
@@ -67,6 +68,7 @@ const Table = () => {
           ))}
         </tbody>
       </table>
+      <Pagination />
     </Wrapper>
   )
 }

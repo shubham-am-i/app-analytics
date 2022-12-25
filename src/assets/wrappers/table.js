@@ -10,7 +10,7 @@ const Wrapper = styled.section`
     height: 33px;
     border: 1px solid #70707038;
     border-radius: 4px;
-    font: normal normal bold 18px/22px Lato;
+    font: normal normal bold 16px Lato;
     letter-spacing: 0.27px;
     color: #1d1a1a;
   }

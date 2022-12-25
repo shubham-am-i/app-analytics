@@ -32,15 +32,19 @@ const DateRange = () => {
     document.addEventListener('click', hideOnClickOutside, true)
   }, [])
 
+  useEffect(() => {
+    getData()
+    // eslint-disable-next-line
+  }, [])
+
   const handleChange = (selection) => {
     const startDate = format(selection.startDate, 'yyyy-MM-dd')
     const endDate = format(selection.endDate, 'yyyy-MM-dd')
-    getData(startDate, endDate)
+    getData(startDate, endDate) // send date endpoint to fetch new data
     setRange([selection])
   }
   // hide dropdown on ESC press
   const hideOnEscape = (e) => {
-    // console.log(e.key)
     if (e.key === 'Escape') {
       setOpen(false)
     }
@@ -48,8 +52,6 @@ const DateRange = () => {
 
   // Hide dropdown on outside click
   const hideOnClickOutside = (e) => {
-    // console.log(refOne.current)
-    // console.log(e.target)
     if (refOne.current && !refOne.current.contains(e.target)) {
       setOpen(false)
     }

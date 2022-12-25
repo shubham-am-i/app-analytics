@@ -1,7 +1,7 @@
 body {
   margin: 0;
   padding: 0 8%;
-  font: normal normal normal 18px/22px Lato;
+  font: normal normal normal 16px Lato;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

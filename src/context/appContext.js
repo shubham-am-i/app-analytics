@@ -1,11 +1,9 @@
-import React, {useReducer, useContext} from 'react'
+import React, {useReducer, useContext, useCallback} from 'react'
 import axios from 'axios'
-import moment from 'moment/moment'
-import millify from 'millify'
 import format from 'date-fns/format'
 // local imports
 import reducer from './reducer'
-import {allColumns, visibleColumns} from '../utils/config'
+import {allColumns, formatData, visibleColumns} from '../utils/config'
 
 // get values from local storage
 const sequence = localStorage.getItem('sequence')
@@ -15,6 +13,8 @@ const initialState = {
   columnSequence: sequence ? JSON.parse(sequence) : allColumns,
   visibleColumns: visibleColumns,
   data: [],
+  totalRecords: 0,
+  page: 1,
 }
 
 const AppContext = React.createContext()
@@ -36,6 +36,7 @@ const AppProvider = ({children}) => {
     localStorage.setItem('sequence', JSON.stringify(newSequence))
   }
 
+  // fetch data from API
   const getData = async (start, end) => {
     let startDate = start ? start : format(new Date('June 01, 2021'), 'yyyy-MM-dd')
     let endDate = end ? end : format(new Date('June 30, 2021'), 'yyyy-MM-dd')
@@ -57,36 +58,23 @@ const AppProvider = ({children}) => {
             record.app = appRecord.app_name
           }
         })
-        record.date = moment(record.date).format('D MMM YY')
-        record.fill_rate = (+((record.requests / record.responses) * 100).toFixed(2)).toString().concat('%')
-        record.CTR = (+((record.clicks / record.impressions) * 100).toFixed(2)).toString().concat('%')
-        record.requests = millify(record.requests, {
-          lowercase: true,
-        })
-        record.responses = millify(record.responses, {
-          lowercase: true,
-        })
-        record.clicks = millify(record.clicks, {
-          precision: 2,
-          decimalSeparator: ',',
-          lowercase: true,
-        })
-        record.impressions = millify(record.impressions, {
-          precision: 2,
-          decimalSeparator: ',',
-          lowercase: true,
-        })
-        record.revenue = millify(record.revenue)
+        return formatData(record)
       })
       dispatch({
         type: 'GET_DATA_SUCCESS',
         payload: {
           data,
+          totalRecords: data.length,
         },
       })
     } catch (error) {
       console.log(error)
     }
+  }
+
+  // sets page number
+  const paginate = (pageNumber) => {
+    dispatch({type: 'CHANGE_PAGE', payload: {pageNumber}})
   }
 
   return (
@@ -96,6 +84,7 @@ const AppProvider = ({children}) => {
         getData,
         handleChange,
         changeSequence,
+        paginate,
       }}>
       {children}
     </AppContext.Provider>

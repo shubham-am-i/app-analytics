@@ -9,7 +9,6 @@ const Wrapper = styled.section`
   justify-content: space-evenly;
   border: 1px solid #eaeaea;
   border-radius: 4px;
-  /* font: normal normal normal 18px/22px Lato; */
   div {
     display: flex;
     flex-wrap: wrap;
