@@ -1,20 +1,20 @@
 // external imports
-import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
+import {DragDropContext, Droppable, Draggable} from 'react-beautiful-dnd'
 
 // local imports
 import Wrapper from '../assets/wrappers/accordian'
-import { useAppContext } from '../context/appContext'
+import {useAppContext} from '../context/appContext'
 
 const Accordian = () => {
-  const { columnSequence, changeSequence, visibleColumns, handleChange } = useAppContext()
+  const {columnSequence, changeSequence, visibleColumns, handleChange} = useAppContext()
   //   const { Date, App, Requests, Responses, Impressions, Clicks, Revenue, Fill_rate, CTR } = visibleColumns
 
   //   toggle visibility
   const handleClick = (e) => {
     const name = e.target.id
-    if (name === 'date' || name === 'app_id') return
+    if (name === 'date' || name === 'app') return
     const value = visibleColumns[e.target.id] ? false : true
-    handleChange({ name, value })
+    handleChange({name, value})
   }
 
   // handle drag sequence
@@ -41,8 +41,7 @@ const Accordian = () => {
                       id={column}
                       className={visibleColumns[column] ? 'active' : ''}
                       ref={provided.innerRef}
-                      onClick={handleClick}
-                    >
+                      onClick={handleClick}>
                       {column}
                     </span>
                   )}

@@ -1,28 +1,34 @@
 // native import
-import { useState, useEffect } from 'react'
+import {useState, useEffect} from 'react'
 // external import
-
 // local import
-import { useAppContext } from '../context/appContext'
+import {useAppContext} from '../context/appContext'
 import Wrapper from '../assets/wrappers/table'
-import { tableHeading } from '../utils/config'
 import Accordian from './Accordian'
+import DateRange from './DateRange'
 
 const Table = () => {
   const [showSettings, setShowSettings] = useState(false)
-  const { getData, data, columnSequence, visibleColumns } = useAppContext()
-
-  //   filtered visibleColumns
-  let keys = Object.keys(visibleColumns)
-  let filtered = keys.filter((key) => visibleColumns[key])
-  console.log(filtered)
+  const [filtered, setFiltered] = useState([])
+  const {getData, data, columnSequence, visibleColumns} = useAppContext()
 
   useEffect(() => {
     getData()
     // eslint-disable-next-line
   }, [])
+  useEffect(() => {
+    let arr = []
+    for (let column of columnSequence) {
+      if (visibleColumns[column]) {
+        arr.push(column)
+      }
+    }
+    setFiltered(arr)
+  }, [columnSequence, visibleColumns])
+
   return (
     <Wrapper>
+      <DateRange />
       <button className='acc-button' onClick={() => setShowSettings(!showSettings)}>
         Settings
       </button>
@@ -37,7 +43,15 @@ const Table = () => {
               ))}
           </tr>
         </thead>
-        <tbody></tbody>
+        <tbody>
+          {data.map((item, i) => (
+            <tr key={i}>
+              {filtered.map((data, i) => (
+                <td key={i}>{item[data]}</td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
       </table>
     </Wrapper>
   )
