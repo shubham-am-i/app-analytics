@@ -6,6 +6,10 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+/* On screens that are 600px or less */
+@media screen and (max-width: 480px) {
+  body {
+    padding: 0 0.6em;
+    box-sizing: border-box;
+  }
 }

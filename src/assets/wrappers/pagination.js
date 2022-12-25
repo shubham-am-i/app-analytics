@@ -18,7 +18,10 @@ const Wrapper = styled.section`
     cursor: pointer;
     background-color: lightgrey;
   }
-  @media (min-width: 992px) {
+  .active {
+    background-color: lightgrey;
+  }
+  @media screen and (max-width: 480px) {
   }
 `
 export default Wrapper

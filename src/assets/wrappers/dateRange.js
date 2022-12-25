@@ -1,6 +1,10 @@
 import styled from 'styled-components'
 
 const Wrapper = styled.section`
+  .calendarWrap {
+    display: inline-block;
+    position: relative;
+  }
   input.inputBox {
     height: 33px;
     border: 1px solid #70707038;
@@ -8,12 +12,6 @@ const Wrapper = styled.section`
     text-align: center;
     font-size: 16px;
   }
-
-  .calendarWrap {
-    display: inline-block;
-    position: relative;
-  }
-
   .calendarElement {
     position: absolute;
     left: 50%;
@@ -22,7 +20,14 @@ const Wrapper = styled.section`
     border: 1px solid #ccc;
     z-index: 999;
   }
-  @media (min-width: 992px) {
+  /* On screens that are 600px or less */
+  @media screen and (max-width: 480px) {
+    input.inputBox {
+      height: 25px;
+    }
+    .calendarElement {
+      transform: translate(-20%);
+    }
   }
 `
 export default Wrapper

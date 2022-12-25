@@ -2,7 +2,7 @@ import Wrapper from '../assets/wrappers/pagination'
 import {useAppContext} from '../context/appContext'
 
 const Pagination = () => {
-  const {totalRecords, paginate} = useAppContext()
+  const {totalRecords, paginate, page} = useAppContext()
 
   //   generate page number
   const pageNumbers = []
@@ -12,7 +12,7 @@ const Pagination = () => {
   return (
     <Wrapper>
       {pageNumbers.map((number) => (
-        <span key={number} onClick={() => paginate(number)}>
+        <span key={number} onClick={() => paginate(number)} className={page === number ? 'active' : ''}>
           {number}
         </span>
       ))}

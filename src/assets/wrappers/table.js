@@ -35,7 +35,14 @@ const Wrapper = styled.section`
     width: 18px;
     margin-right: 8px;
   }
-  @media (min-width: 992px) {
+  /* On screens that are 600px or less */
+  @media screen and (max-width: 480px) {
+    .acc-button {
+      height: 28px;
+    }
+    table {
+      width: 100% !important;
+    }
   }
 `
 export default Wrapper

@@ -22,7 +22,20 @@ const Wrapper = styled.section`
   .active {
     background: radial-gradient(circle at 0% 0.5%, rgb(241, 241, 242) 0.1%, rgb(224, 226, 228) 100.2%);
   }
-  @media (min-width: 992px) {
+  /* On screens that are 600px or less */
+  @media screen and (max-width: 480px) {
+    padding: 1%;
+    margin-top: 2%;
+    height: 150px;
+    div {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      row-gap: 0.5em;
+      column-gap: 0.5em;
+    }
+    div span {
+      padding: 3px 18px;
+    }
   }
 `
 export default Wrapper
