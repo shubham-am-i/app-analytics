@@ -1,4 +1,4 @@
-import React, {useReducer, useContext, useCallback} from 'react'
+import React, {useReducer, useContext} from 'react'
 import axios from 'axios'
 import format from 'date-fns/format'
 // local imports
